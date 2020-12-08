@@ -1,0 +1,55 @@
+<div class="account-pages my-5 pt-sm-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="text-center mb-4">
+          <a routerLink="/" class="auth-logo mb-5 d-block">
+            <img src="assets/images/logo-dark.png" alt="" height="30" class="logo logo-dark">
+            <img src="assets/images/logo-light.png" alt="" height="30" class="logo logo-light">
+          </a>
+
+          <h4>One Time Password</h4>
+          <p class="text-muted mb-4">Một mã OTP đã được gửi đến số điện thoại hoặc email của bạn, hãy điền vào ô bên dưới để đặt lại mật khẩu tài khoản Saza-chat của bạn</p>
+
+        </div>
+
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="p-3">
+                <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+                <ngb-alert type="success" *ngIf="success" [dismissible]="false">{{ success }}</ngb-alert>
+
+                <div class="mb-4">
+                  <label>Mã OTP</label>
+                  <div class="input-group mb-3 input-group-lg rounded-lg justify-content-center">
+                    <ng-otp-input Name="otp" (onInputChange)="onOtpChange($event)" 
+                    [config]="{length:6, allowNumbersOnly:true}"></ng-otp-input>  
+                    <div *ngIf="error" class="invalid-feedback">{{error}}</div>
+                  </div>
+                </div>
+
+                <div>
+                  <button class="btn btn-primary btn-block"
+                    type="submit" href="javascript: void(0);"
+                    (click)="onSubmit()">Xác nhận</button>
+                </div>
+
+                <div class="mt-4 text-center">
+                  <p class="text-muted mb-0">Không nhận được mã OTP? 
+                    <a href="javascript: void(0);" (click)="reSendOTP()" class="text-primary">Gửi lại OTP</a></p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 text-center">
+          <p>Quay lại trang chủ<a routerLink="/"
+              class="font-weight-medium text-primary">
+              Saza-chat </a> </p>
+          <p>© {{year}} {{'footer.name' | translate}} <i class="mdi mdi-heart text-danger"></i>
+            {{'footer.text' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
